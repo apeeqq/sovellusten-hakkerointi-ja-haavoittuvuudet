@@ -46,7 +46,7 @@ Etäyhteyksiin kuuluivat SSH Githubiin sekä SSH kotiverkkoni sisällä. Kotiver
 
 Aiempien pilvipalveluiden toimittajien lisäksi toimittajina toimivat DNA, Hewlett Packard, Huawei, Samsung, Google, Oracle, Debian sekä OffSec.
 
-![](/home/aapo/.config/marktext/images/2026-01-15-19-59-08-h1-verkko-ja-rajapintakaavio.png)
+![Verkko ja rajapintakaavio](h1-verkko-ja-rajapintakaavio.png)
 
 **Kuva 1.** Rajapintojen suhde verkkoihin havainnollistettuna
 
@@ -60,7 +60,7 @@ Aiempien pilvipalveluiden toimittajien lisäksi toimittajina toimivat DNA, Hewle
 
 Ensimmäiseksi todistin, että minulla on kyseiset laitteet verkossa. Kuvakaappaus on reitittimeni asetussivustosta, jossa oli kannettava tietokoneeni ja puhelimeni listattuna. Yksilöiviä tunnisteita kuten MAC- ja IP-osoitteita en halunnut laittaa tietoturvasyistä. Opettaja ilmoittikin tunnilla etukäteen, että yksilöiviä osoitteita ei tarvitse laittaa.
 
-![](/home/aapo/.config/marktext/images/2026-01-15-20-13-34-reititin-laitesivu.png)
+![Reitittimen laitesivu](reititin-laitesivu.png)
 
 **Kuva 2.** Reitittimen asetussivusto päällä olevista laitteista
 
@@ -81,7 +81,7 @@ Taulukko"*
 
 
 
-![](/home/aapo/.config/marktext/images/2026-01-16-10-07-41-taulukko-b-tehtava.png)
+![Standardiin sidottu taulukko](taulukko-b-tehtava.png)
 
 
 
