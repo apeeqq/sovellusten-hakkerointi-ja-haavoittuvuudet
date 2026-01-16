@@ -4,6 +4,8 @@
 
 *Pohjana Tero Karvinen ja Lari Iso-Anttila 2026: Sovellusten hakkerointi ja haavoittuvuudet 2026 kevät, [Application hacking - 2026 Spring - English ICI012AS3AE-3001 and Finnish ICI012AS3A-3003](https://terokarvinen.com/application-hacking/#h1-high-standards-lari)*
 
+<br>
+
 **Opettajan alustusta tehtävästä:**
 
 *"Kohdeympäristö on oma kotiverkko, jossa teet kurssin harjoituksia. “Organisaatio” on käytännössä oma taloutesi + oma IT-ympäristö (laitteet, reititin/Wi-Fi, pilvipalvelut, harjoituskoneet, mahdollinen NAS, jne.).*
@@ -19,6 +21,8 @@
 2. *Mitä rajaat ulos ja miksi*
 
 3. *Keskeiset rajapinnat*
+
+<br>
 
 ### Scope
 
@@ -36,6 +40,8 @@ Televisio oli yksi, joka jäi ulkopuolelle. Tämäkin laite ei ole relevantti ku
 
 Pelikonsoli ja tulostin eivät tulleet mukaan, koska nekin ovat useimmiten pois päältä, eivät ole olennaisia ja lisäksi tulostin ei ole koskaan suoraan verkossa kiinni. Kiinnitän sen fyysisesti laitteeseen, kun haluan tulostaa jotakin.
 
+<br>
+
 ### Rajapinnat
 
 **15.1.2026 Klo 19.36**
@@ -49,6 +55,8 @@ Aiempien pilvipalveluiden toimittajien lisäksi toimittajina toimivat DNA, Hewle
 ![Verkko ja rajapintakaavio](h1-verkko-ja-rajapintakaavio.png)
 
 **Kuva 1.** Rajapintojen suhde verkkoihin havainnollistettuna
+
+<br>
 
 ### Näyttö
 
@@ -66,6 +74,8 @@ Ensimmäiseksi todistin, että minulla on kyseiset laitteet verkossa. Kuvakaappa
 
 Lisäksi Github repositorioni URL on: [GitHub - apeeqq/sovellusten-hakkerointi-ja-haavoittuvuudet](https://github.com/apeeqq/sovellusten-hakkerointi-ja-haavoittuvuudet).
 
+<br>
+
 ## b) Sidotaan Standardiin
 
 **Tehtävä:** *"Tunnista vähintään 2 interested party -tahoa kotiverkkokontekstissa ja kirjoita kullekin:*
@@ -79,7 +89,7 @@ Lisäksi Github repositorioni URL on: [GitHub - apeeqq/sovellusten-hakkerointi-j
 *Tuotos (palautus):  
 Taulukko"*
 
-
+<br>
 
 ![Standardiin sidottu taulukko](taulukko-b-tehtava.png)
 
