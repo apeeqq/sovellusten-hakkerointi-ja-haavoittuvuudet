@@ -321,7 +321,7 @@ Tämän jälkeen päätin kokeilla alla olevan kuvan mukaista kyselyä.
 
 Kyselyssä pin-attribuutin parametrin asetin tyhjäksi, jonka jälkeen lisäsin ehdon, joka on aina tosi sekä "LIMIT 2,1", joka antaisi yhden tietueen, mutta aloittaisi toisesta rivistä eteenpäin. Tällöin tulisi seuraavan rivin password kolumnin kohdalta oleva tietue vastauksena. Näin myös kävi ja admin-käyttäjän salasana oli ruudulla.
 
-![Adminin salasana](staff-only-answer.png)
+![Adminin salasana](010-staff-only-answer.png)
 
 **Kuva 16.** Admin-käyttäjän salasana esillä
 
@@ -333,7 +333,7 @@ Kyselyssä pin-attribuutin parametrin asetin tyhjäksi, jonka jälkeen lisäsin 
 
 Aloitin avaamalla lähdekoodin ja huomasin sivuston olevan flask pohjainen.
 
-![Lahdekoodia](source-flask.png)
+![Lahdekoodia](010-source-flask.png)
 
 **Kuva 17.** Ohjelman lähdekoodia
 
@@ -426,7 +426,7 @@ Kuitenkin terminaalissa näkyi erilainen virheilmoitus tällä kertaa.
 
 Koitin tällaista seuraavaksi.
 
-![Muutettuja parametreja](edited-3.png)
+![Muutettuja parametreja](010-edited-3.png)
 
 **Kuva 26.** Muutokset parametreissä
 
@@ -572,7 +572,7 @@ ffuf -w common.txt -u http://127.0.0.2:8000/FUZZ
 
 Osa vastauksesta alla.
 
-![Vastaus](/home/aapo/.config/marktext/images/2026-01-22-17-32-33-ffuf-self-training-res.png)
+![Vastaus](ffuf-self-training-res.png)
 
 **Kuva 39.** Vastaus ffufin komentoon ilman filttereitä
 
@@ -657,7 +657,7 @@ cd logtin
 
 Lisäsin vielä alle kuvan tietokantojen päivittämisestä varmuuden vuoksi.
 
-![Tietokannan paivitys](/home/aapo/.config/marktext/images/2026-01-22-18-59-27-db-update-020.png)
+![Tietokannan paivitys](db-update-020.png)
 
 **Kuva 46.** Tietokannan päivitys
 
@@ -713,7 +713,7 @@ Csrfmiddlewaretoken on ilmeisesti djangon luoma varmiste, joka estäisi cross-si
 
 Menin katsomaan kehittäjätyökaluilla enemmän, josta löysin jälleen tietoja, joita lähetetään POST-pyyntönä sivustolle.
 
-![Tietoja kehittajatyokalusta]body-admin-page-020.png)
+![Tietoja kehittajatyokalusta](body-admin-page-020.png)
 
 **Kuva 51.** Kehittäjätyökalujen network välilehden tietoja kohdassa body
 
@@ -785,7 +785,7 @@ Tulkinta tekoälyn vastauksista oli hieman sekava, koska kääntäminen oli melk
 
 Joka tapauksessa tiedostopolussa /home/aapo/Desktop/challenges/020-your-eyes-only/logtin/hats/views.py oleva tiedosto näytti alla olevan kuvan mukaiselta.
 
-![Tiedosto views](views.png)
+![Tiedosto views](020-views.png)
 
 **Kuva 58.** Tiedostossa näkyi aikaisemmin avaamiani käsitteitä
 
