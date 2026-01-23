@@ -4,6 +4,8 @@
 
 *Pohjana Tero Karvinen ja Lari Iso-Anttila 2026: Sovellusten hakkerointi ja haavoittuvuudet 2026 kevät, [Application hacking - 2026 Spring - English ICI012AS3AE-3001 and Finnish ICI012AS3A-3003](https://terokarvinen.com/application-hacking/#h2-break--unbreak-tero)*
 
+<br>
+
 ## Käytettävän ympäristön ominaisuudet
 
 - Host
@@ -45,6 +47,8 @@
   - Firmware Date: 2006-12-01
   
   - Browser: Mozilla Firefox ESR
+
+ <br>
 
 ## x) Read/watch/listen and summarize. (In this x-subsection, you don't need to do tests on a computer; just reading or listening and a summary is enough. A few bullet points are sufficient for the summary.)
 
@@ -108,6 +112,8 @@
 
 (Karvinen 2006. URL: [Raportin kirjoittaminen | Tero Karvinen](https://terokarvinen.com/2006/raportin-kirjoittaminen-4/))
 
+<br>
+
 ## a) Break into 010-staff-only. See Karvinen 2024: [Hack'n Fix](https://terokarvinen.com/hack-n-fix/)
 
 **21.1.2026 Klo 13.11**
@@ -126,7 +132,7 @@ unzip teros-challenges.zip
 
 Poistin internet-yhteyden tässä vaiheessa pois päältä GUI:stä.
 
-![](/home/aapo/.config/marktext/images/2026-01-21-13-24-10-vm-disconnected-internet.png)
+![VM irroitettu internetistä](vm-disconnected-internet.png)
 
 **Kuva 1.** Kuvassa punaisella alueella nähtävissä internet-yhteyden katkaisu
 
@@ -138,15 +144,17 @@ python3 staff-only.py
 
 Minun piti saada selville admin-käyttäjän salasana katsomatta lähdekoodia. Aloitin menemällä localhost-osoitteeseen 127.0.0.1:5000.
 
-![](/home/aapo/.config/marktext/images/2026-01-21-13-31-40-010-etusivu.png)
+![Etusivu](010-etusivu.png)
 
 **Kuva 2.** 010-staff-only tehtävän etusivu
 
 Kokeilin ensimmäiseksi syöttää PIN-koodin "123" sivuston kenttään, joka lupasi paljastaa minulle salasanani. Sain salasanan "Somedude" vastaukseksi.
 
-![](/home/aapo/.config/marktext/images/2026-01-21-13-36-06-password-somedude.png)
+![Salasana Somedude](password-somedude.png)
 
 **Kuva 3.** Salasana palautettuna
+
+<br>
 
 ### SQL-injektion yrityksiä
 
@@ -162,7 +170,7 @@ Päädyin ratkaisuun, koska ajattelin "password" taulun voivan olla olemassa, jo
 
 Vastauksena oli "Please enter a number".
 
-![](/home/aapo/.config/marktext/images/2026-01-21-13-49-06-failure-1.png)
+![Epäonnistunut yritys](failure-1.png)
 
 **Kuva 4.** Ensimmäinen epäonnistunut yritys
 
@@ -176,11 +184,13 @@ Ajattelin tämän lausekkeen avulla selvittää, jos "pins" taulussa olisi jotai
 
 Vastauksena jälleen "Please enter a number".
 
-![](/home/aapo/.config/marktext/images/2026-01-21-13-54-51-failure-2.png)
+![Toinen epäonnistunut yritys](failure-2.png)
 
 **Kuva 5.** Toinen epäonnistunut yritys
 
 Tässä vaiheessa tajusin, että eihän aikaisemmat yritykset voineet toimia, koska syöttämäni lausekkeet menevät suoraan argumentiksi parametriin "pin". Eli tällä tavoin: "SELECT password FROM pins WHERE pin='SELECT password FROM passwords WHERE password='Somedude;';"
+
+<br>
 
 ### Lisätiedon hakeminen ja lisää yrityksiä
 
@@ -202,7 +212,7 @@ http://127.0.0.1:5000?SELECT password FROM pins WHERE pin=' OR 1=1;-- #Apostroph
 
 Ei tullut mitään uutta. Samanlainen aloitussivu, kuin navigoidessa localhost-osoitteeseen.
 
-![](/home/aapo/.config/marktext/images/2026-01-21-14-29-07-failure-3.png)
+![Kolmas epäonnistunut yritys](failure-3.png)
 
 **Kuva 6.** Kolmas epäonnistunut yritys
 
@@ -219,6 +229,8 @@ http://127.0.0.1:5000/?SELECT password FROM pins WHERE pin='' OR 1=1;-- #Laitoin
 
 Tuloksena oli kuitenkin samanlaisia aloitussivuja.
 
+<br>
+
 ### Ensimmäinen vinkki
 
 **21.1.2026 Klo 16.02**
@@ -227,19 +239,19 @@ Olin saavuttanut tilanteen, jossa en osannut enää mitään järkevää vaihtoe
 
 Vinkin avulla avasin Mozilla Firefoxin kehittäjätyökalut, josta näin koodinpätkän pin-koodin syöttämisestä.
 
-![](/home/aapo/.config/marktext/images/2026-01-21-16-18-16-pin-form.png)
+![Pin koodi](pin-form.png)
 
 **Kuva 7.** Html koodia sivulta
 
 Koodista ilmeni, että tyyppinä on numero, joka olikin selvää jo tilanteissa jolloin syötin kenttään kirjaimia tai heittomerkkejä. Suunnitelmani oli seuraavaksi muuttaa 'input type="number" muotoon 'type="text"', jolloin toivon mukaan olisin päässyt muokkaamaan syötettä enemmän.
 
-![](/home/aapo/.config/marktext/images/2026-01-21-16-27-54-input-modified.png)
+![Muokattu syote ja tyyppi](input-modified.png)
 
 **Kuva 8.** Syötettä ja tyyppiä muokattu
 
 Painoin "Reveal my password" painiketta, mutta edelleen sama oletussivu tuli esiin.
 
-![](/home/aapo/.config/marktext/images/2026-01-21-16-35-21-failure-4.png)
+![Neljäs epäonnistuminen](failure-4.png)
 
 **Kuva 9.** Neljäs epäonnistunut yritys
 
@@ -249,7 +261,7 @@ Tajusin tämän jälkeen, että tämähän muutti vain paikallisesti html-koodia
 
 Koitin erilaista tekniikkaa network välilehden kautta kehittäjätyökaluilla. Vinkissä sanottiin, että kentän tyypin rajoitus voi olla vain UI:ssä, joten sen pystyisi ohittamaan kehittäjätyökaluilla. Kokeilin "Network" välilehden avulla muuttaa arvoa kohdassa "body" ja lähettää uudelleen POST-pyynnön.
 
-![](/home/aapo/.config/marktext/images/2026-01-21-17-22-41-body-muutettu.png)
+![Body muutettu](body-muutettu.png)
 
 **Kuva 10.** Bodya muutettu
 
@@ -257,31 +269,33 @@ Edelleenkään ei mitään uutta.
 
 Tässä kohtaa tajusin, että todennäköisesti URLia pitäisi kyllä muokata, koska numeraalinen tyyppi on sidottu vain laatikkoon, johon syötetään pin. En kuitenkaan keksinyt enempää ratkaisuja, joten turvauduin seuraaviin vinkkeihin.
 
+<br>
+
 ### Toiset vinkit ja uusia yrityksiä
 
 **22.1.2026 Klo 07.57**
 
 En oikein saanut mitään irti seuraavista vinkeistä, mutta päätin koittaa uudenlaista tekniikkaa. Huomasin, että aikaisemmin olin yrittänyt "body" kohtaan "network" välilehdellä syöttää "value=0' or 1=1;--". Kuitenkin avatessa valikon, oletusarvona oli "pin=123", koska olin syöttänyt numerot "123" GUI:n kautta.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-08-01-59-body-pin-123.png)
+![Pin 123](body-pin-123.png)
 
 **Kuva 11.** Bodyssa pin=123
 
 Kokeilin syöttää kohtaan "pin=' OR 1=1;--", jolloin pitäisi olla oikea attribuutti "pin". Painoin tämän jälkeen "send" kehittäjätyökaluista.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-08-04-49-body-pin-changed.png)
+![Pin vaihdettuna](body-pin-changed.png)
 
 **Kuva 12.** Pin-attribuutilla ja uusilla arvoilla kyselyn tekeminen
 
 Tämän jälkeen huomasin jotain eroavaisuutta "Initiator" kohdassa.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-08-08-04-initiator-changed.png)
+![Muutos pyynnössä](initiator-changed.png)
 
 **Kuva  13.** Initiator sarakkeen teksti oli muuttunut ensimmäisestä kyselystä
 
 Klikkasin oikealla hiiren painikkeella uutta ja muuttunutta POST-kyselyä sekä valitsin vaihtoehdon, jolla avasin sen uudessa välilehdessä. Sitten tulikin uutta ja kaivattua tietoa!
 
-![](/home/aapo/.config/marktext/images/2026-01-22-08-12-53-new-clue.png)
+![Uusi vihje](new-clue.png)
 
 **Kuva 14.** Kuvassa uusi salasana "foo"
 
@@ -295,19 +309,23 @@ sekä tehtävän vinkeissä olevan tiedon "LIMIT offset,count" ja "LIMIT 2,1".
 
 (URL: [Hack'n Fix](https://terokarvinen.com/hack-n-fix/#tips-for-010-staff-only))
 
+<br>
+
 ### Ratkaisu
 
 Tämän jälkeen päätin kokeilla alla olevan kuvan mukaista kyselyä.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-08-37-19-solving-request.png)
+![Uusi kysely](solving-request.png)
 
 **Kuva 15.** Uusi kysely
 
 Kyselyssä pin-attribuutin parametrin asetin tyhjäksi, jonka jälkeen lisäsin ehdon, joka on aina tosi sekä "LIMIT 2,1", joka antaisi yhden tietueen, mutta aloittaisi toisesta rivistä eteenpäin. Tällöin tulisi seuraavan rivin password kolumnin kohdalta oleva tietue vastauksena. Näin myös kävi ja admin-käyttäjän salasana oli ruudulla.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-08-43-43-010-staff-only-answer.png)
+![Adminin salasana](staff-only-answer.png)
 
 **Kuva 16.** Admin-käyttäjän salasana esillä
+
+<br>
 
 ## b) Fix the 010-staff-only vulnerability from source code. Demonstrate with a test that your solution works.
 
@@ -315,7 +333,7 @@ Kyselyssä pin-attribuutin parametrin asetin tyhjäksi, jonka jälkeen lisäsin 
 
 Aloitin avaamalla lähdekoodin ja huomasin sivuston olevan flask pohjainen.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-08-59-31-010-source-flask.png)
+![Lahdekoodia](source-flask.png)
 
 **Kuva 17.** Ohjelman lähdekoodia
 
@@ -346,6 +364,8 @@ ChatGPT vastasi, että "db.session" on aktiivinen yhteys tietokantaan. Puolestaa
 
 Neljänteen kysymykseen vastaus oli, että placeholder kertoo SQL-lausekkeessa, mihin arvo laitettaisiin myöhemmin. Lisäksi vastauksessa kerrottiin SQLAlchemyn placeholder olevan aina muodossa kaksoispiste ja muuttuja.
 
+<br>
+
 ### Ensimmäiset yritykset haavoittuvuuden korjaamiseksi
 
 **22.1.2026 Klo 14.52**
@@ -356,31 +376,31 @@ Löysinkin Flaskin sivustolta myös vähän ohjeita, joita voisin myös soveltaa
 
 Alkuperäinen koodi on alla.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-14-59-31-010-original.png)
+![Alkuperaista koodia](010-original.png)
 
 **Kuva 18.** Alkuperäinen koodi
 
 Muutin koodia.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-14-57-29-010-koodia.png)
+![Muutettua koodia](010-koodia.png)
 
 **Kuva 19.** Muutettua koodia
 
 Kuvassa on muutettuna "sql" muuttujan lauseke parametrisoituun muotoon sekä "res" muuttujan tietokantakysely sisältämään "pin" muuttujan arvon.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-15-06-07-010-edited-focus.png)
+![Lisakuva muutoksista](010-edited-focus.png)
 
 **Kuva 20.** Selkeämpi kuva muutoksista
 
 Tämän jälkeen laitoin weppipalvelimen ylös ja surffasin tuttuun localhost-osoitteeseen http://127.0.0.1:5000/. Kuitenkin minulle tuli Server virhe.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-15-08-22-server-error.png)
+![Virheilmoitus](server-error.png)
 
 **Kuva 21.** Palvelin virhe localhost-osoitteessa
 
 Menin katsomaan terminaaliin palvelimen ilmoituksia.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-15-09-51-server-500-error-terminal.png)
+![Virheilmoitus terminaalissa](server-500-error-terminal.png)
 
 **Kuva 22.** Virhe 500 terminaalissa
 
@@ -388,51 +408,53 @@ Selkeästi virheenä oli "text()" attribuutin argumentit, joita se ottaisi vain 
 
 Kokeilin erilaista tyyliä, jossa laitoin suoraan res-muuttujan tietokantakyselyyn merkkijonon, kuten netin esimerkeissä oli. Huomasin muuttaessani koodia samalla, että minulla taisi olla muutenkin syntaksivirheitä, joten sekin saattoi olla virheen taustalla.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-15-23-16-010-edited-2.png)
+![Muutettua koodia](010-edited-2.png)
 
 **Kuva 23.** Toisen kerran muutettua koodia
 
 Laitoin uudestaan weppipalvelimen pystyyn ja tuttuun localhost-osoitteeseen, mutta samanlainen virheilmoitus.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-15-25-33-server-error-2-mozilla.png)
+![Virheilmoitus selaimessa](server-error-2-mozilla.png)
 
 **Kuva 24.** Toinen samanlainen virheilmoitus selaimessa
 
 Kuitenkin terminaalissa näkyi erilainen virheilmoitus tällä kertaa.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-15-28-05-error-terminal-2.png)
+![Virheilmoitus terminaalissa](error-terminal-2.png)
 
 **Kuva 25.** Uudenlainen virheilmoitus
 
 Koitin tällaista seuraavaksi.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-15-32-40-010-edited-3.png)
+![Muutettuja parametreja](edited-3.png)
 
 **Kuva 26.** Muutokset parametreissä
 
 Kuitenkin samanlainen virheilmoitus selaimessa. Terminaalissa tuli taas uusi ilmoitus.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-15-34-18-error-terminal-3.png)
+![Virheilmoitus terminaalissa](error-terminal-3.png)
 
 **Kuva 27.** Nimi sql ei oltu määritetty
+
+<br>
 
 ### Ratkaisu ja haavoittuvuuden testaus
 
 Ajattelin, että ongelma oli nyt siinä, että olin poistanut sql-muuttujan, mutta se oli toisessa paikassa vielä linkitettynä. Tuumasin sql-muuttujan palauttamisen olevan järkevin ratkaisu.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-15-38-31-010-edited-sql-back.png)
+![Muuttuja otettu takaisin koodiin](010-edited-sql-back.png)
 
 **Kuva 28.** Muuttuja sql otettuna takaisin käyttöön
 
 Nyt tuli ainakin tuttu etusivu näkyviin.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-15-53-15-homepage-fixed-1-try.png)
+![Tehtavan etusivu](homepage-fixed-1-try.png)
 
 **Kuva 29.** Etusivu saatuna selaimeen uudelleen
 
 Ainakin pin-koodina "123" ei anna suoraan numeroa UI:ssä takas sivun alalaidassa.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-15-55-21-123-after-fix.png)
+![Testaus pin koodilla](123-after-fix.png)
 
 **Kuva 30.** Etusivulla erilainen toiminta kuin tehtävää aloittaessa
 
@@ -440,13 +462,13 @@ Ainakin pin-koodina "123" ei anna suoraan numeroa UI:ssä takas sivun alalaidass
 
 Lähdin kokeilemaan samalla tavalla injektoimaan tietokantaa kuin aiemmin onnistuneella kerralla.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-15-58-44-first-try-after-fix.png)
+![Lauseke](first-try-after-fix.png)
 
 **Kuva 31.** SQL-injektio ilman "LIMIT" lauseketta
 
 Vastaus oli lupaava.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-16-00-34-foo-blocked.png)
+![Sivulla ei salasanoja](foo-blocked.png)
 
 **Kuva 32.** Vastauksena ei tullut salasanoja
 
@@ -454,17 +476,19 @@ Vastauksessa aiemmin ollutta salasanaa "foo" ei ollut nyt nähtävissä.
 
 Lähdin kokeilemaan samalla tavalla, kuin olin aiemmin saanut admin-käyttäjän salasanan selville.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-16-03-27-admin-try-after-fix.png)
+![Lauseke](admin-try-after-fix.png)
 
 **Kuva 33.** Lausekkeella sai aiemmin admin-käyttäjän salasanan
 
 Ja jälleen tuli toivottua vastausta.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-16-04-54-admin-blocked.png)
+![Salasanoja ei tullut esille](admin-blocked.png)
 
 **Kuva 34.** Käyttäjän admin salasanaa ei tullut esille
 
 Mitään salasanoja ei tullut taaskaan esille, joten voineen todeta haavoittuvuuden olevan paikattu.
+
+<br>
 
 ## c) Solve dirfuzt-1 from the article Karvinen 2023: [Find Hidden Web Directories - Fuzz URLs with ffuf](https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/). This helps in solving 020-your-eyes-only.
 
@@ -487,7 +511,7 @@ chmod u+x dirfuzt-0 #Lisää käyttäjälle oikeuden ajaa tiedosto
 
 Menin Firefoxilla osoitteeseen 127.0.0.2:8000.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-16-46-57-dirfuzt-homepage.png)
+![Tehtavan etusivu](dirfuzt-homepage.png)
 
 **Kuva 35.** Tehtävän etusivu selaimessa
 
@@ -516,15 +540,17 @@ Suodatin tuloksia komennolla
 ffuf -w common.txt -u http://127.0.0.2:8000/FUZZ -fs 132 #Valinta -fs suodattaa kaikki 132B pituiset vastaukset pois (Lähteenä yllä oleva Karvisen artikkeli)
 ```
 
-![](/home/aapo/.config/marktext/images/2026-01-22-17-19-29-ffuf-training-filter.png)
+![Osuma ffuf ohjelmalla](ffuf-training-filter.png)
 
 **Kuva 36.** Osuma admin polusta
 
 Löysin "admin" polun sivulta, joten menin selaimella sinne.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-17-21-36-ffuf-training-solved.png)
+![Loydoksen vahvistus](ffuf-training-solved.png)
 
 **Kuva 37.** Selaimesta sai vahvistettua onnistumisen
+
+<br>
 
 ### Ffufin käyttö ilman ohjeita
 
@@ -534,7 +560,7 @@ Kokeilin seuraavaksi löytää sivulta [Find Hidden Web Directories - Fuzz URLs 
 
 Lataamisen jälkeen laitoin taas internet-yhteyden pois päältä, laitoin tiedoston ajettavaksi ja ajoin sen.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-17-29-38-dirfutz-1-starting-point.png)
+![Aloitussivu](dirfutz-1-starting-point.png)
 
 **Kuva 38.** Aloitussivu selaimessa tiedoston ajamisen jälkeen
 
@@ -546,7 +572,7 @@ ffuf -w common.txt -u http://127.0.0.2:8000/FUZZ
 
 Osa vastauksesta alla.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-17-32-33-ffuf-self-training-res.png)
+![Vastaus](/home/aapo/.config/marktext/images/2026-01-22-17-32-33-ffuf-self-training-res.png)
 
 **Kuva 39.** Vastaus ffufin komentoon ilman filttereitä
 
@@ -562,7 +588,7 @@ ffuf -w common.txt -u http://127.0.0.2:8000/FUZZ -fs 154
 
 Vastauksena taisi tulla haluamani vastaus adminin ja versionhallinnan sivuista.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-17-39-21-ffuf-self-learning-admin-version.png)
+![Vastaus suodatuksella](ffuf-self-learning-admin-version.png)
 
 **Kuva 40.** Tulos suodattamisella
 
@@ -570,17 +596,19 @@ Päättelisin "wp-admin" olevan admin sivusto ja ".git" sivustot olisivat versio
 
 Navigoin ensin admin sivuille.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-17-41-42-ffuf-self-wp-admin.png)
+![Admin sivusto](ffuf-self-wp-admin.png)
 
 **Kuva 41.** Admin sivuston lippu
 
 Tämän jälkeen menin versionhallinnan sivulle.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-17-42-59-ffuf-self-git.png)
+![Versionhallinnan sivu](ffuf-self-git.png)
 
 **Kuva 42.** Versionhallinta sivuston lippu
 
 Tämä tehtävä oli paketissa.
+
+<br>
 
 ## d) Break into 020-your-eyes-only. See Karvinen 2024: [Hack'n Fix](https://terokarvinen.com/hack-n-fix/)
 
@@ -592,7 +620,7 @@ Aloitin tekemällä virtuaaliympäristön komennolla
 virtualenv virtualenv/ -p python3 --system-site-packages #
 ```
 
-![](/home/aapo/.config/marktext/images/2026-01-22-18-44-06-virtualenv.png)
+![Virtuaaliympariston prosessi](virtualenv.png)
 
 **Kuva 43.** Virtuaaliympäristön tekeminen ja sen prosessi
 
@@ -606,13 +634,13 @@ Laitoin internet-yhteyden takaisin päälle, koska minun piti ladata django.
 
 Latasin djangon opettajan ohjeiden mukaan.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-18-50-26-django-download.png)
+![Djangon asentaminen](django-download.png)
 
 **Kuva 44.** Tekstin tarkastaminen tiedostosta ja sitä hyödyntäen djangon lataus
 
 Huomasin kuitenkin vastauksesta, että ilmeisesti django olisi ollut jo valmiina virtuaalikoneellani. Tarkastin djangon olemassaolon.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-18-53-14-django-version.png)
+![Version tuloste](django-version.png)
 
 **Kuva 45.** Djangon version tulostaminen
 
@@ -629,7 +657,7 @@ cd logtin
 
 Lisäsin vielä alle kuvan tietokantojen päivittämisestä varmuuden vuoksi.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-18-59-27-db-update-020.png)
+![Tietokannan paivitys](/home/aapo/.config/marktext/images/2026-01-22-18-59-27-db-update-020.png)
 
 **Kuva 46.** Tietokannan päivitys
 
@@ -641,13 +669,15 @@ Edelleen annoin komennon
 ./manage.py runserver #Ajaa tiedoston manage.py, joka sisältää weppipalvelimen
 ```
 
+<br>
+
 ### Tiedustelu
 
 **22.1.2026 Klo 19.03**
 
 Menin katsomaan selaimella weppipalvelimen tarjoamaa etusivua.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-19-04-52-homepage-og-020.png)
+![Etusivu](homepage-og-020.png)
 
 **Kuva 47.** Kohdesivuston etusivu
 
@@ -659,19 +689,19 @@ ffuf -w common.txt -u http://127.0.0.1:8000/FUZZ
 
 Ffufin ajaminen antoi hieman lisäinfoa.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-19-10-55-ffuf-first-020.png)
+![Tulos](ffuf-first-020.png)
 
 **Kuva 48.** Ffufin antama tulos
 
 Lähdin navigoimaan osoitteeseen 127.0.0.1:8000/admin-console.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-19-12-46-020-admin-console.png)
+![Admin sivusto](020-admin-console.png)
 
 **Kuva 49.** Admin-console selaimessa
 
 Löysin sivuston html-koodista mielenkiintoisen rivin.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-19-17-34-020-html-token.png)
+![Tunniste](020-html-token.png)
 
 **Kuva 50.** Html-koodia sivulta admin-console
 
@@ -683,43 +713,47 @@ Csrfmiddlewaretoken on ilmeisesti djangon luoma varmiste, joka estäisi cross-si
 
 Menin katsomaan kehittäjätyökaluilla enemmän, josta löysin jälleen tietoja, joita lähetetään POST-pyyntönä sivustolle.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-19-29-23-body-admin-page-020.png)
+![Tietoja kehittajatyokalusta]body-admin-page-020.png)
 
 **Kuva 51.** Kehittäjätyökalujen network välilehden tietoja kohdassa body
+
+<br>
 
 ### Tunkeutumisyrityksiä ja ratkaisu
 
 Ajattelin ensiksi poistaa tokenin kokonaan ja kokeilla siten SQL-injektiota.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-19-32-53-request-without-token.png)
+![Lauseke kyselyssa](request-without-token.png)
 
 **Kuva 52.** Payload sivustolle
 
 Sain virheilmoituksen tokenin puuttumisesta.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-19-34-29-403-error-token.png)
+![Virheilmoitus](403-error-token.png)
 
 **Kuva 53.** Virheilmoitus 403
 
 Yritin erilaisia tekniikoita, kuten syöttää kaikille kirjautumissivuille "username" kohtaan admin' or 1=1;--. Toinen jota koitin joka paikkaan oli Admin' or 1=1;-- sekä poistelin välillä csrf-tokenin pyynnöstä. Lopulta tajusin sivun oikeassa yläreunassa olevan "register" painike.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-20-01-35-020-register-homepage-button.png)
+![Rekisterointipainike](020-register-homepage-button.png)
 
 **Kuva 54.** Rekisteröintipainike sivun oikeassa yläreunassa
 
 Tein käyttäjän ja tutkin sivuja. "Show my personal data" painikkeen takaa löytyi tietoja.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-20-04-07-020-personal-data-user.png)
+![Kayttajan tietoja](020-personal-data-user.png)
 
 **Kuva 55.** Tietoja sivuilta kirjautuneena käyttäjänä
 
 Päätin kokeilla sisään kirjautuneena mennä osoitteeseen 127.0.0.1:8000/admin-console, josta löysinkin admin-käyttäjän piilotetun sivun.
 
-![](/home/aapo/.config/marktext/images/2026-01-22-20-02-52-admin-secret-page.png)
+![Admin sivu murrettuna](admin-secret-page.png)
 
 **Kuva 56.** Admin-käyttäjän murrettu sivu
 
 En tiedä tarkalleen ottaen, miksi pääsin sisään admin-käyttäjän sivuille luomallani tunnuksella? Olin kuitenkin melko varma, että se johtui evästeistä ja vielä erittäin todennäköisesti aikaisemmin mainitsemastani csrf-tokenista.
+
+<br>
 
 ## e) Fix the 020-your-eyes-only vulnerability. Demonstrate with a test that your solution works.
 
@@ -727,7 +761,7 @@ En tiedä tarkalleen ottaen, miksi pääsin sisään admin-käyttäjän sivuille
 
 Lähdin ensiksi tarkastelemaan lähdekoodia, joka näytti tältä.
 
-![](/home/aapo/.config/marktext/images/2026-01-23-08-17-11-020-source-code.png)
+![Lahdekoodia](020-source-code.png)
 
 **Kuva 57.** Tehtävän 020-your-eyes-only lähdekoodi tiedostossa manage.py
 
@@ -751,9 +785,11 @@ Tulkinta tekoälyn vastauksista oli hieman sekava, koska kääntäminen oli melk
 
 Joka tapauksessa tiedostopolussa /home/aapo/Desktop/challenges/020-your-eyes-only/logtin/hats/views.py oleva tiedosto näytti alla olevan kuvan mukaiselta.
 
-![](/home/aapo/.config/marktext/images/2026-01-23-10-14-46-020-views.png)
+![Tiedosto views](views.png)
 
 **Kuva 58.** Tiedostossa näkyi aikaisemmin avaamiani käsitteitä
+
+<br>
 
 ### Ratkaisu ja testaus
 
@@ -761,7 +797,7 @@ Joka tapauksessa tiedostopolussa /home/aapo/Desktop/challenges/020-your-eyes-onl
 
 Suunnitelmani oli muuttaa "AdminShowAllView" kohtaan samanlaiset ehdot kuin kohtaan "AdminDashboardView".
 
-![](/home/aapo/.config/marktext/images/2026-01-23-10-19-04-020-view-edited.png)
+![Tiedosto views muutettuna](020-view-edited.png)
 
 **Kuva 59.** Tiedosto views.py muutettuna
 
@@ -771,13 +807,13 @@ Sitten laitoin uudelleen weppipalvelimen ylös ja menin katsomaan, pääsinkö t
 
 En päässyt sivuille, joten muutos toimi!
 
-![](/home/aapo/.config/marktext/images/2026-01-23-10-24-18-020-admin-console-blocked.png)
+![Admin sivu estettyna](020-admin-console-blocked.png)
 
 **Kuva 60.** Aiemmin haavoittuneena olleelle sivulle ei enää päässyt
 
 Tehtävät olivat tässä vaiheessa paketissa, mutta toteaisin vielä mielestäni ratkaisujen olevan hieman kyseenalaisia, koska ratkaisut perustuivat paljolti tekoälyyn. Oman näkemykseni, ja toki tekoälyn kehittäjienkin mukaan, tiedot tulisi tarkistaa muista lähteistä. En löytänyt taikka en osannut tulkita ratkaisun kannalta oleellisia asioita muista lähteistä, tehtävän tekemiseen varatun ajan puitteissa. Tällöin nämä ratkaisut riittivät tähän paikkaan.
 
-
+<br>
 
 ## Loppupohdintaa
 
