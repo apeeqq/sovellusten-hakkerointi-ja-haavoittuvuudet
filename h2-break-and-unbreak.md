@@ -337,7 +337,9 @@ Aloitin avaamalla lähdekoodin ja huomasin sivuston olevan flask pohjainen.
 
 **Kuva 17.** Ohjelman lähdekoodia
 
-Etsin tietoa, miten flaskilla ja sqlalchemyllä estetään SQL-injektiot.
+<br>
+
+### Alkutietoja
 
 **22.1.2026 Klo 14.13**
 
@@ -767,6 +769,10 @@ Lähdin ensiksi tarkastelemaan lähdekoodia, joka näytti tältä.
 
 Jatkoin edelleen etsimään djangon sivuilta tietoa, miten korjaisin koodin turvalliseksi?
 
+<br>
+
+### Alkutietoja djangosta
+
 **23.1.2026 Klo 09.49**
 
 Tutkittuani lähes kaksi tuntia djangon ohjeita ja lisäksi kyselemällä ChatGPT:ltä sekä hakemalla DuckDuckGo hakukoneesta vastauksia, taisin saada vihdoin vastauksen.
@@ -829,9 +835,9 @@ Johdonmukaisella testauksella voidaan välttyä monelta ongelmalta ennen kuin ha
 
 ## Lähteet
 
-ChatGPT. Kielimalli GPT-5. Generoitu 22.1.2026. Syötteet b-tehtävässä.
+ChatGPT. Kielimalli GPT-5. Generoitu 22.1.2026. Syötteet [b-tehtävässä](#alkutietoja).
 
-ChatGPT. Kielimalli GPT-5 mini. Generoitu 23.1.2026. Syötteet e-tehtävässä.
+ChatGPT. Kielimalli GPT-5 mini. Generoitu 23.1.2026. [Syötteet e-tehtävässä](#alkutietoja-djangosta).
 
 Ffuf virallinen manuaali. Kali Linux. Komento "man ffuf". Luettu: 22.1.2026.
 
