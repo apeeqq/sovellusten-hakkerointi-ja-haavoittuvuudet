@@ -454,7 +454,7 @@ Nyt tuli ainakin tuttu etusivu näkyviin.
 
 **Kuva 29.** Etusivu saatuna selaimeen uudelleen
 
-Ainakin pin-koodina "123" ei anna suoraan numeroa UI:ssä takas sivun alalaidassa.
+Ainakin pin-koodina "123" ei anna suoraan numeroa UI:ssä takaisin sivun alalaidassa.
 
 ![Testaus pin koodilla](123-after-fix.png)
 
@@ -619,7 +619,7 @@ Tämä tehtävä oli paketissa.
 Aloitin tekemällä virtuaaliympäristön komennolla
 
 ```bash
-virtualenv virtualenv/ -p python3 --system-site-packages #
+virtualenv virtualenv/ -p python3 --system-site-packages
 ```
 
 ![Virtuaaliympariston prosessi](virtualenv.png)
@@ -823,7 +823,7 @@ Tehtävät olivat tässä vaiheessa paketissa, mutta toteaisin vielä mielestän
 
 ## Loppupohdintaa
 
-Haavoittuvuuksien yleisestä esiintyvyydestä, kuvittelisin "010-staff-only" tehtävän sisältävän SQL-injektio haavoittuvuuden voivan ilmetä kaikissa sivuissa, joissa käyttäjän syötettä otetaan vastaan ja sen perusteella tehdään tietokantakyselyitä. Hyökkäyksen estämiseksi ainoa vaihtoehto mielestäni on tehdä käytettävän tietokanta-alustan ohjeiden mukaiset ratkaisut.
+Haavoittuvuuksien yleisestä esiintyvyydestä kuvittelisin "010-staff-only" tehtävän sisältävän SQL-injektio haavoittuvuuden voivan ilmetä kaikissa sivuissa, joissa käyttäjän syötettä otetaan vastaan ja sen perusteella tehdään tietokantakyselyitä. Hyökkäyksen estämiseksi ainoa vaihtoehto mielestäni on tehdä käytettävän tietokanta-alustan ohjeiden mukaiset ratkaisut.
 
 Tehtävän "020-your-eyes-only" haavoittuvuus oli puolestaan käyttäjän tunnistamiseen liittyvistä virheistä koostuva. Tämä voisi mielestäni olla millaisessa tahansa sovelluksessa, jos käyttöoikeudet ovat asetettu väärin. Tässäkin tapauksessa näen ainoan vaihtoehdon suojautumiseen olevan alustan oikeaoppinen käyttö. Lisäksi on toki tiedettävä, mitä tämä asia tekee ja kenellä on siihen pääsy?
 
