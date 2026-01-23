@@ -394,7 +394,7 @@ Kuvassa on muutettuna "sql" muuttujan lauseke parametrisoituun muotoon sekä "re
 
 **Kuva 20.** Selkeämpi kuva muutoksista
 
-Tämän jälkeen laitoin weppipalvelimen ylös ja surffasin tuttuun localhost-osoitteeseen http://127.0.0.1:5000/. Kuitenkin minulle tuli Server virhe.
+Tämän jälkeen laitoin weppipalvelimen ylös ja surffasin tuttuun localhost-osoitteeseen 127.0.0.1:5000. Kuitenkin minulle tuli Server virhe.
 
 ![Virheilmoitus](server-error.png)
 
