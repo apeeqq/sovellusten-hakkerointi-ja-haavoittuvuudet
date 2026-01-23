@@ -349,11 +349,11 @@ Kysyin ChatGPT:ltä kysymyksiä
 
 1. "what is db.session.execute"
 
-2. "explain this from sqlalchemy import text 
+2. "explain this from sqlalchemy import text  
 
-        result = db.session.execute(
-             text("SELECT * FROM users WHERE id = :id"),
-             {"id": 1}
+        result = db.session.execute(  
+             text("SELECT * FROM users WHERE id = :id"),  
+             {"id": 1}  
         )"
 
 3. "are there always 2 parameters you can put to db.session.execute?"
