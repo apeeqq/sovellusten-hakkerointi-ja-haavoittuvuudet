@@ -54,13 +54,13 @@
 
 Latasin ensimmäiseksi zip-tiedoston, jonka jälkeen purin sen. Tämän jälkeen ajoin ohjelman "passtr".
 
-![](/home/aapo/.config/marktext/images/2026-01-29-15-01-47-passtr-run.png)
+![](passtr-run.png)
 
 **Kuva 1.** Passtr ajaminen hakemistossa challenges
 
 Ohjelma kysyi salasanaa ajettaessa. Koitin salasanaa "admin", joka ei ollut oikein.
 
-![](/home/aapo/.config/marktext/images/2026-01-29-15-05-18-whats-passwd.png)
+![](whats-passwd.png)
 
 **Kuva 2.** Ohjelma kokonaisuudessaan toistaiseksi
 
@@ -72,13 +72,13 @@ $ strings passtr | less #putkitin lessiin koska tavaraa oli paljon
 
 Taisin löytää heti salasanan ja lipun.
 
-![](/home/aapo/.config/marktext/images/2026-01-29-15-11-32-passwd-flag.png)
+![](passwd-flag.png)
 
 **Kuva 3.** Oletettu salasana oli sala-hakkeri-321
 
 Menin kokeilemaan onnistuuko tuolla salasanalla. Oikea oli.
 
-![](/home/aapo/.config/marktext/images/2026-01-29-15-13-48-right-passwd.png)
+![](right-passwd.png)
 
 **Kuva 4.** Salasanalla sala-hakkeri-321 sai oikean vastauksen
 
@@ -114,19 +114,19 @@ $ gcc passtr.c -o passtr-uusi #gcc on compiler ohjelma, passtr.c on c-ohjelmoint
 
 Katsoin vielä stringsillä, että näkyihän uudessa binäärissäkin samalla tavalla salasana ja lippu.
 
-![](/home/aapo/.config/marktext/images/2026-01-29-20-22-46-passtr-uusi.png)
+![](passtr-uusi.png)
 
 **Kuva 5.** Uudessa binäärissä näkyi samat tiedot
 
 Sitten oli vuorossa upx:n käyttö.
 
-![](/home/aapo/.config/marktext/images/2026-01-29-20-24-55-upx-passtr-uusi.png)
+![](upx-passtr-uusi.png)
 
 **Kuva 6.** Upx ohjelmalla uuden binääritiedoston pakkaus
 
 Sain piilotettua osan koodista, mutta mielestäni vieläkin näkyi liikaa tietoja.
 
-![](/home/aapo/.config/marktext/images/2026-01-29-20-27-46-upx-1.png)
+![](upx-1.png)
 
 **Kuva 7.** Ohjelma paketoituna upx:llä ja avattuna stringsillä
 
@@ -140,13 +140,13 @@ Ajoin nykyisen tiedoston päälle vielä upx:n komennolla
 $ upx --best passtr-uusi
 ```
 
-![](/home/aapo/.config/marktext/images/2026-01-29-20-35-40-upx-passtr-uusi-best.png)
+![](upx-passtr-uusi-best.png)
 
 **Kuva 8.** Upx:n ajaminen valinnalla --best ja lopputulos
 
 Avasin stringsillä taas binäärin.
 
-![](/home/aapo/.config/marktext/images/2026-01-29-20-38-48-strings-passtr-uusi-2.png)
+![](strings-passtr-uusi-2.png)
 
 **Kuva 9.** Samanlainen tuloste tuli ulos kuin aiemmin
 
@@ -160,13 +160,13 @@ Valinta --best ei siis muuttanut mitään tiedostossa. Toki upx:llä paketoitu v
 
 Lähdin ensiksi ajamaan ohjelman. Ohjelma oli samalla kaavalla toimiva kuin passtr ohjelma.
 
-![](/home/aapo/.config/marktext/images/2026-01-30-10-39-06-packd-ran.png)
+![](packd-ran.png)
 
 **Kuva 10.** Packd ohjelma kysyi myös salasanaa
 
 Avasin stringsillä ohjelman.
 
-![](/home/aapo/.config/marktext/images/2026-01-30-10-41-07-strings-packd.png)
+![](strings-packd.png)
 
 **Kuva 11.** Packd ohjelmassa viitteitä salasanasta ja lipusta
 
@@ -192,19 +192,19 @@ Katsoin aiemmin mainitsemastani artikkelista (Khaishagi 2024) ohjeita ghidran k�
 
 Toin packd-ohjelman projektiini ja avasin sen koodiselaimella (Code Browser). Seuraavaksi Ghidra kysyi, haluanko analysoida packd:n, johon vastasin kyllä.
 
-![](/home/aapo/.config/marktext/images/2026-01-30-11-16-24-packd-analyze.png)
+![](packd-analyze.png)
 
 **Kuva 12.** Ghidran tuloste ohjelman analysoimisesta
 
 Minulla oli kaikki oletusvalinnat seuraavassa ikkunassa valittuna. Tämän jälkeen sivuni näytti alla olevan kuvan mukaiselta.
 
-![](/home/aapo/.config/marktext/images/2026-01-30-11-20-03-packed-code-browser.png)
+![](packed-code-browser.png)
 
 **Kuva 13.** Packd koodiselaimessa analysoituna
 
 Löysin kohdan, jossa luki jotain salasanasta.
 
-![](/home/aapo/.config/marktext/images/2026-01-30-11-31-41-ghidra-passwd.png)
+![](ghidra-passwd.png)
 
 **Kuva 14.** Salasana tai sen osa näkyi Ghidrassa
 
@@ -212,7 +212,7 @@ Kuitenkin kohdassa näkyi yhtä paljon salasanasta, kuin aikaisemmin stringsinki
 
 Kokeilin salasanaa "piilos-An", mutta se oli väärä.
 
-![](/home/aapo/.config/marktext/images/2026-01-30-11-35-43-piilos-An-failure.png)
+![](piilos-An-failure.png)
 
 **Kuva 15.** Ghidrassa ja stringsissä näkyvä salasana ei ollut oikea
 
@@ -226,7 +226,7 @@ Klikkailin erilaisia kohtia Ghidran koodiselaimessa ja katsoin muutaman videon a
 
 Löysin koodista tekstin, josta sain viitteitä, että ohjelma olisi pakattu upx:llä.
 
-![](/home/aapo/.config/marktext/images/2026-01-30-12-37-23-upx-clue-packd.png)
+![](upx-clue-packd.png)
 
 **Kuva 16.** Assembly kohdassa olevaa tekstiä
 
@@ -236,19 +236,19 @@ Ajattelin, että pystyisinköhän deobfuskoimaan binäärin upx:llä.
 
 Purin upx paketin -d valinnalla.
 
-![](/home/aapo/.config/marktext/images/2026-01-30-13-06-52-upx-d-packd.png)
+![](upx-d-packd.png)
 
 **Kuva 17.** Tuloste oli ainakin lupaavan näköinen pakettia purettaessa
 
 Tämän jälkeen näkyikin jo stringsillä helposti erilaista tietoa kuin aiemmin.
 
-![](/home/aapo/.config/marktext/images/2026-01-30-13-09-26-packd-unpacked-strings.png)
+![](packd-unpacked-strings.png)
 
 **Kuva 18.** Uusia tietoja stringsillä avatessa
 
 Kokeilin tämän johdosta salasanaa "piilos-AnAnAs", joka oli oikea.
 
-![](/home/aapo/.config/marktext/images/2026-01-30-13-12-11-piilos-ananas.png)
+![](piilos-ananas.png)
 
 **Kuva 19.** Oikealla salasanalla tulostui lippu
 
@@ -270,7 +270,7 @@ Selvitin raakatavujen, hexojen, binäärien ja base64 suhdetta toisiinsa syötte
 
 Vastauksessaan tekoäly sanoi raakatavujen olevan alinta ja "oikeaa" dataa. Tämän jälkeen tulivat binääri, jonka kantaluku on 2. Heksojen kantaluku on 16 ja base64 kantaluku on 64. Tein vastauksesta piirustuksen ja liitin sen tähän. Ehkä voi jotain toistakin joskus auttaa hahmottamisessa.
 
-![](/home/aapo/.config/marktext/images/2026-01-30-16-54-35-data-formats-explained.drawio.png)
+![](data-formats-explained.drawio.png)
 
 **Kuva 20.** Sama arvo esitetty neljässä eri muodossa
 
@@ -284,7 +284,7 @@ Löysin lisää ohjeita xxd-ohjelmasta.
 
 Sain ainakin suoraan heksoista base64 merkkijonon, joka oli tehtävänannossakin.
 
-![](/home/aapo/.config/marktext/images/2026-01-30-17-23-11-xxd-hex-to-base64.png)
+![](xxd-hex-to-base64.png)
 
 **Kuva 21.** Heksat käännetty base64-muotoon
 
