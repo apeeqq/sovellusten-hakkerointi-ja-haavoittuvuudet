@@ -4,6 +4,8 @@
 
 *Pohjana Tero Karvinen ja Lari Iso-Anttila 2026: Sovellusten hakkerointi ja haavoittuvuudet 2026 kevät, [Application hacking - 2026 Spring - English ICI012AS3AE-3001 and Finnish ICI012AS3A-3003](https://terokarvinen.com/application-hacking/#h4-some-disassembly-required-tero)*
 
+<br>
+
 ## Käytettävän ympäristön ominaisuudet
 
 - Host
@@ -107,13 +109,13 @@ Minulla oli valmiiksi jo edellisestä tehtävästä tarvittava tiedosto packd, j
 $ upx -d packd
 ```
 
-![](/home/aapo/.config/marktext/images/2026-02-04-16-16-39-upx-d-packd.png)
+![Paketoinnin poistaminen](upx-d-packd.png)
 
 **Kuva 1.** Tiedoston paketoinnin poistaminen
 
 Toin tiedoston projektiini.
 
-![](/home/aapo/.config/marktext/images/2026-02-04-16-20-49-packd-import.png)
+![Automaattisen tunnistamisen tiedot](packd-import.png)
 
 **Kuva 2.** Ghidra tunnisti automaattisesti tiedoston tietoja
 
@@ -123,13 +125,13 @@ Tämän jälkeen avasin packd tiedoston koodiselaimessa (code browser), jonka an
 
 Main funktio aukesi heti automaattisesti decompileriin. Kyseinen funktio on löydettävissä myös omalla main nimellään "symbol tree" valikosta.
 
-![](/home/aapo/.config/marktext/images/2026-02-05-15-33-35-symbol-tree-main.png)
+![Symbol tree](symbol-tree-main.png)
 
 **Kuva 3.** Symbol tree valikon funktioita
 
 Seuraavaksi lähdin selvittelemään koodia ja nimeämään mahdollisuuksien mukaan muuttujia uudelleen.
 
-![](/home/aapo/.config/marktext/images/2026-02-05-15-37-01-packd-main-original.png)
+![Main funktio](packd-main-original.png)
 
 **Kuva 4.** Main funktio alkuperäisessä muodossa
 
@@ -139,7 +141,7 @@ Muutin ensimmäiseksi muuttujan local_28 nimeksi passwd_input, jolla tarkoitan s
 
 Muutin seuraavaksi muuttujan iVar1 nimeksi result, koska se on kokonaisluku (integer), joka kertoo kokonaisluvulla salasanan oikeellisuuden.
 
-![](/home/aapo/.config/marktext/images/2026-02-05-15-54-53-packd-var-edited.png)
+![Main funktio muutettuna](packd-var-edited.png)
 
 **Kuva 5.** Main funktion muuttujat muutettuina ghidrassa
 
@@ -153,7 +155,7 @@ Ohjelmassa ensimmäiseksi määritellään muuttujat. Funktio puts on selkeästi
 
 Lähdin avaamaan ja muuttamaan koodia ghidrassa, koska ajattelin muuten olevan lähes mahdotonta muokata binäärimuodossa olevaa koodia.
 
-![](/home/aapo/.config/marktext/images/2026-02-05-16-21-54-passtr-main-original.png)
+![Main funktio](passtr-main-original.png)
 
 **Kuva 6.** Ohjelman passtr main funktio ilman muokkauksia ghidran decompilerissa
 
@@ -165,7 +167,7 @@ Huomasin kuitenkin, että operaattoria ei pystynyt muuttamaan ollenkaan decompil
 
 Testasin tässä kohdin vielä alkuperäistä koodia, jotta sain varmistuksen, että se hyväksyy vain salasanan "sala-hakkeri-321".
 
-![](/home/aapo/.config/marktext/images/2026-02-05-17-05-04-passtr-test-original.png)
+![Ohjelman ajaminen](passtr-test-original.png)
 
 **Kuva 7.** Ohjelman ajaminen koodia muuttamatta
 
@@ -181,7 +183,7 @@ Lisäksi kysyin "what is jne". Vastauksessa kerrottiin JNE:n ja JNZ:n olevan eht
 
 Oletin zero flag:n tarkoittavan muuttujan arvoa. Vastauksissaan tekoäly kertoi myös, että minun piti ensiksi valita assembly ikkunassa ohjeen kohdalla "Patch Instruction" muuttaakseni ohjeen. Tein näin ja muutin ohjeen muotoon JZ, koska alkuperäinen oli muodossa JNZ, jolloin se vastaisi vastakkaista muotoa. Toisinsanoen ajattelin JE:n mahdollisesti olevan väärä, koska se sopisi muodon puolesta paremmin JNE:n pariksi.
 
-![](/home/aapo/.config/marktext/images/2026-02-05-17-33-53-JZ-in-passtr.png)
+![Hyppyohje muutettu](JZ-in-passtr.png)
 
 **Kuva 8.** Hyppyohjeen JNZ tilalle muutettu JZ
 
@@ -189,7 +191,7 @@ Tämän jälkeen ghidran file-valikosta painoin export program painiketta, jonka
 
 Menin ajamaan ohjelman ja testaamaan toimiko se? Sehän toimi kuten pitikin!
 
-![](/home/aapo/.config/marktext/images/2026-02-05-17-39-48-passtr-ran-edited.png)
+![Ohjelman ajaminen muutettuna](passtr-ran-edited.png)
 
 **Kuva 9.** Muut syötteet toimivat ohjelmaan paitsi sala-hakkeri-321
 
@@ -205,7 +207,7 @@ Latasin repon zip-tiedostona sivulta [GitHub - NoraCodes/crackmes: Some CrackMe 
 $ unzip crackmes-master.zip
 ```
 
-![](/home/aapo/.config/marktext/images/2026-02-05-19-50-43-downloads-crackmes.png)
+![Tehtavan tiedostot](downloads-crackmes.png)
 
 **Kuva 10.** Tehtävän tiedostot purettuna
 
@@ -217,7 +219,7 @@ $ unzip crackmes-master.zip
 
 Aloitin muuttamalla compilerilla binääriksi tiedoston crackme01.c.
 
-![](/home/aapo/.config/marktext/images/2026-02-05-20-09-38-gcc-krakki1.png)
+![Tehtavatiedosto binaarina](gcc-krakki1.png)
 
 **Kuva 11.** Tehtävätiedosto käännetty binääriksi
 
@@ -229,7 +231,7 @@ $ strings krakki1 | less
 
 Heti ensimmäiseksi näin siellä rivin, joka viittaisi salasanaan.
 
-![](/home/aapo/.config/marktext/images/2026-02-05-20-18-03-strings-krakki1.png)
+![Binaari avattuna stringsilla](strings-krakki1.png)
 
 **Kuva 12.** Merkkijono password1 löytyi binääristä
 
@@ -239,7 +241,7 @@ Menin ajamaan tiedoston tehtävän ohjeiden mukaan komennolla
 $ ./krakki1 password1
 ```
 
-![](/home/aapo/.config/marktext/images/2026-02-05-20-24-43-krakki1-solved.png)
+![Oikea vastaus](krakki1-solved.png)
 
 **Kuva 13.** Salasana oli oikea
 
@@ -255,19 +257,19 @@ Katsoin tehtävässä hieman apua ohjelman oikeaoppiseen ajamiseen tehtävän vi
 
 Seuraavaksi oli samanlainen prosessi vuorossa tiedostolle crackme01e. Käänsin sen binääriksi ja ajoin.
 
-![](/home/aapo/.config/marktext/images/2026-02-05-20-31-45-krakki2-ran.png)
+![Ohjelma ajettuna](krakki2-ran.png)
 
 **Kuva 14.** Tiedosto oli samankaltainen kuin aikaisempikin
 
 Avasin sen stringsillä ja huomasin johtolangan salasanaan.
 
-![](/home/aapo/.config/marktext/images/2026-02-05-20-33-39-strings-krakki2.png)
+![Binaari avattuna stringsilla](strings-krakki2.png)
 
 **Kuva 15.** Osa binääriä
 
 Ajattelin merkkijonon "slm!paas.k" olevan melko varmasti obfuskoitu, mutta menin koittamaan sitä kuitenkin ensiksi.
 
-![](/home/aapo/.config/marktext/images/2026-02-05-20-37-09-krakki2-yritys-1.png)
+![Epaonnistunut yritys](krakki2-yritys-1.png)
 
 **Kuva 16.** Salasana ei ollut oikea
 
@@ -275,7 +277,7 @@ Salasanan loppuosa paas.k muutenkin ilmeisesti aiheutti ohjelman ajamisen omitui
 
 Menin main-funktioon ensimmäiseksi katsomaan, mitä sieltä löytyisi?
 
-![](/home/aapo/.config/marktext/images/2026-02-05-20-46-23-krakki2-main.png)
+![Main funktio](krakki2-main.png)
 
 **Kuva 17.** Lähtötilanne main-funktiossa
 
@@ -285,19 +287,19 @@ Tutkittuani asiaa ja katsottuani edellisen tehtävän stringsillä, totesin täs
 
 Nimesin hieman uudestaan muuttujia ghidrassa.
 
-![](/home/aapo/.config/marktext/images/2026-02-05-21-29-20-krakki2-ghidra-renamed.png)
+![Main funktio muutettuna](krakki2-ghidra-renamed.png)
 
 **Kuva 18.** Uudelleen nimetyt muuttujat alleviivattu punaisella
 
 Huomasin, että komentohistoriassa minulla näkyi vain "slm" salasanan kohdalla, vaikka olin syöttänyt koko salasanan.
 
-![](/home/aapo/.config/marktext/images/2026-02-05-21-33-39-only-slm.png)
+![Komentohistoria](only-slm.png)
 
 **Kuva 19.** Tiedoston ajamisen komentohistoria
 
 Näin ollen päättelin, että huutomerkki on ratkaiseva tekijä salasanassa, joka toimii jonkinlaisena haitallisena ohjautuvuutena komennossa. Markdownissa, ja tietääkseni muissakin syntakseissa, kenoviiva on merkki, jolla saa poistettua merkkien haitallisia toimintoja. Kokeilin siis laittaa kenoviivan ennen huutomerkkiä salasanaan ja sehän toimikin!
 
-![](/home/aapo/.config/marktext/images/2026-02-05-21-39-46-krakki2-solved.png)
+![Vastaus](krakki2-solved.png)
 
 **Kuva 20.** Haasteen crackme01e ratkaisu
 
@@ -309,7 +311,7 @@ Näin ollen päättelin, että huutomerkki on ratkaiseva tekijä salasanassa, jo
 
 Aloitin tehtävän taas kääntämällä ensin tiedoston crackme02.c binääriksi, jonka jälkeen avasin sen ghidrassa analysoituna.
 
-![](/home/aapo/.config/marktext/images/2026-02-06-11-40-36-krakki3-main-original.png)
+![Main funktio](krakki3-main-original.png)
 
 **Kuva 21.** Ohjelman main-funktio ghidran decompilerissa
 
@@ -317,13 +319,13 @@ Nimesin local_c muuttujan ensiksi muotoon "counter". Tarkoitan sillä muuttujan 
 
 (Shokeen 2025. GeeksforGeeks. URL: [C for Loop - GeeksforGeeks](https://www.geeksforgeeks.org/c/c-for-loop/))
 
-![](/home/aapo/.config/marktext/images/2026-02-06-12-09-24-krakki3-counter-edited.png)
+![Main funktio muutettuna](krakki3-counter-edited.png)
 
 **Kuva 22.** Muutetut muuttujat alleviivattu punaisella
 
 Muuttuja uVar1 oli selkeästi funktion palautusarvo, joten nimesin sen muotoon "return_value".
 
-![](/home/aapo/.config/marktext/images/2026-02-06-12-18-50-krakki3-edited-return-value.png)
+![Main funktio muutettuna](krakki3-edited-return-value.png)
 
 **Kuva 23.** Muutetut muuttujat alleviivattu punaisella
 
@@ -335,13 +337,13 @@ Ohjelmassa kokonaisuudessaan nähdäkseni for-silmukka on vain lumetta, koska se
 
 Menin tämän jälkeen ajamaan ohjelmaa ilman syötettä ja syötteen kanssa.
 
-![](/home/aapo/.config/marktext/images/2026-02-06-12-33-27-krakki3-fail.png)
+![Ohjelma ajettuna](krakki3-fail.png)
 
 **Kuva 24.** Ohjelman ajaminen ilman syötettä ja väärän syötteen kanssa
 
 Kokeilin tämän jälkeen ajaa koodissa esiintyneen salasanan "password1" kanssa. Sekään ei ollut oikein.
 
-![](/home/aapo/.config/marktext/images/2026-02-06-12-35-44-krakki3-password1.png)
+![Epaonnistunut yritys](krakki3-password1.png)
 
 **Kuva 25.** Ghidrassa lukeva password1 ei ollut oikea syöte
 
@@ -349,13 +351,13 @@ Kokeilin tämän jälkeen ajaa koodissa esiintyneen salasanan "password1" kanssa
 
 Ajattelin tarkastella for-silmukan sisällä olevaa ehtolauseketta, koska se oli olennainen mielestäni tehtävän kannalta. Ehdon ollessa epätosi, ohjelma olisi nähdäkseni ratkaistu.
 
-![](/home/aapo/.config/marktext/images/2026-02-06-12-41-00-krakki3-conditional.png)
+![Ehtolauseke](krakki3-conditional.png)
 
 **Kuva 26.** For-silmukan sisällä oleva ehtolauseke
 
 Ajattelin todennäköisesti kohdan "password1"[counter] olevan merkkijonosta indeksin poimimista, joten counterin ollessa 0, merkkijonon indeksin 0 kohdalla olisi p. Tämä ei kuitenkaan ollut oikea vastaus.
 
-![](/home/aapo/.config/marktext/images/2026-02-06-13-11-40-krakki3-p-fail.png)
+![Epaonnistunut yritys](krakki3-p-fail.png)
 
 **Kuva 27.** Kirjain p ei ollut oikea vastaus
 
@@ -363,11 +365,11 @@ Minua kyllä ihmetytti suuresti syntaksi "password1"[counter] + -1, koska luulin
 
 Asiaa olisi todella työlästä lähteä selvittämään ilman tekoälyä, joten laitoin syötteeksi "what is if ("pass"[0] + -1) in c". Tekoäly vastasi "pass"[0] olevan tosiaan merkkijono "p", kuten aikaisemminkin totesin. Mutta tämän jälkeen vastauksessaan ChatGPT kertoi p:n olevan desimaaliarvoltansa 112. Tämän jälkeen olikin mahdollista erottaa kokonaisluvusta 112 luku 1. Tämän johdosta luku 111 olisi ASCII-muodossa kirjain "o".
 
-(ChatGPT. GPT5-mini)
+(ChatGPT. GPT5-mini.)
 
 Näin ollen päättelin, että "o" voisi olla oikea vastaus. Näin olikin!
 
-![](/home/aapo/.config/marktext/images/2026-02-06-13-33-05-krakki3-solved.png)
+![Oikea vastaus](krakki3-solved.png)
 
 **Kuva 28.** Syöte tekoälyn vastauksen perusteella oli oikea
 
