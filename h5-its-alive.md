@@ -54,19 +54,19 @@
 
 Tehtävän alussa purin zip-kansion, jonka jälkeen tarkastin millaisia tiedostoja kansiossa oli.
 
-![](/home/aapo/.config/marktext/images/2026-02-15-18-08-16-lab1-ls.png)
+![Tehtavan tiedostot](lab1-ls.png)
 
 **Kuva 1.** Hakemistossa oli kolme erilaista tiedostoa
 
 Varmistin vielä lähdekoodin tiedoston olevan C-kielellä file työkalullakin.
 
-![](/home/aapo/.config/marktext/images/2026-02-15-18-13-27-file-lab1-source.png)
+![Lahdekoodi file tyokalulla](file-lab1-source.png)
 
 **Kuva 2.** Tiedosto oli C-kielellä file työkalunkin mukaan
 
 Ajoin ohjelman nähdäkseni mikä on sen lopputulos.
 
-![](/home/aapo/.config/marktext/images/2026-02-15-18-16-40-lab1-fail.png)
+![Ohjelman virhe](lab1-fail.png)
 
 **Kuva 3.** Ohjelman virhe
 
@@ -78,7 +78,7 @@ $ gcc gdb_example1.c -g -Wall -Werror -o gdb_example1-dbg #gcc on kääntäjä, 
 
 (Valintojen lähteinä kurssin materiaali. Iso-Anttila, L.)
 
-![](/home/aapo/.config/marktext/images/2026-02-15-18-48-21-lab1-debug-ls.png)
+![Debug tiedosto ja listaus](lab1-debug-ls.png)
 
 **Kuva 4.** Debug tiedoston luonti ja hakemiston listaaminen
 
@@ -94,13 +94,13 @@ $ gdb ./gdb_example1-dbg
 
 Aloitin asettamalla break kohdan main-funktioon.
 
-![](/home/aapo/.config/marktext/images/2026-02-15-18-55-20-lab01-break-main.png)
+![Break main funktiossa](lab01-break-main.png)
 
 **Kuva 5.** Breakpoint asetettuna main-funktioon rivillä 14
 
 Listasin lähdekoodin komennolla "list .", joka listaa käsiteltävän kohdan ja sen ympärillä olevia rivejä.
 
-![](/home/aapo/.config/marktext/images/2026-02-15-19-00-44-lab01-list-main.png)
+![Lahdekoodin listaus](lab01-list-main.png)
 
 **Kuva 6.** Lähdekoodin listaus main-funktion ollessa breakpoint
 
@@ -114,25 +114,25 @@ Suoritin komentoja
 
 Huomasin komentojen jälkeen samankaltaisen viestin, kuin binääriä ajettaessa.
 
-![](/home/aapo/.config/marktext/images/2026-02-15-19-11-38-lab01-gdb-seg-fault.png)
+![Segmentointi virhe](lab01-gdb-seg-fault.png)
 
 **Kuva 7.** Segmentointi virhe
 
 Segmentointi virhe tuli suoritettaessa funktiota print_scrambled parametrillä bad_message main-funktiosta.
 
-![](/home/aapo/.config/marktext/images/2026-02-15-19-15-02-lab01-print-scrambled.png)
+![Funktio](lab01-print-scrambled.png)
 
 **Kuva 8.** Funktio print_scramble
 
 Main-funktiossa bad_message muuttujan arvona oli NULL.
 
-![](/home/aapo/.config/marktext/images/2026-02-15-19-17-22-lab01-bad-message-null.png)
+![Muuttujan arvona null](lab01-bad-message-null.png)
 
 **Kuva 9.** Muuttujan bad_message arvossa voisi olla ongelma
 
 Kokeilin ajaa "step" komentoa niin kauan kuin tulisi virhe. Virhe tuli jo ensimmäisellä kierroksella do-while silmukassa print_scramble funktiossa parametrillä bad_message. Kokeilin laittaa print_scramble funktiossa muuttujan message arvoksi "A", jonka jälkeen ei tullut virheilmoitusta. Muuttuja bad_messagen arvo "NULL" oli siis ongelmana.
 
-![](/home/aapo/.config/marktext/images/2026-02-15-19-41-19-lab01-message-A.png)
+![Funktion ajo](lab01-message-A.png)
 
 **Kuva 10.** Funktion ajaminen message muuttujan arvolla A
 
@@ -142,7 +142,7 @@ Kokeilin ajaa "step" komentoa niin kauan kuin tulisi virhe. Virhe tuli jo ensimm
 
 Kävin muuttamassa lähdekoodiin muuttujan bad_message arvoksi "Moi".
 
-![](/home/aapo/.config/marktext/images/2026-02-15-21-39-39-lab01-source-edited.png)
+![Muuttuja muutettuna](lab01-source-edited.png)
 
 **Kuva 11.** Punaisella ympyröity muuttuja muutettuna
 
@@ -154,7 +154,7 @@ $ make #Kääntää koodin Makefile tiedoston mukaan
 
 Tämän jälkeen ajoin ohjelman.
 
-![](/home/aapo/.config/marktext/images/2026-02-15-22-07-21-lab01-success.png)
+![Ohjelman ajo onnistui](lab01-success.png)
 
 **Kuva 12.** Ohjelman sai ajettua ilman virheitä
 
@@ -162,7 +162,7 @@ Ihmettelin ohjelman lopputulosta, koska mielestäni sen olisi pitänyt tulostaa 
 
 (Wikipedia. URL: [ASCII – Wikipedia](https://fi.wikipedia.org/wiki/ASCII))
 
-![](/home/aapo/.config/marktext/images/2026-02-15-22-14-29-lab01-loop.png)
+![Funktion silmukka](lab01-loop.png)
 
 **Kuva 13.** Funktion print_scrambled silmukka
 
@@ -176,31 +176,31 @@ Muuttuja "i" oli alustettu arvoon 3, jolloin printf funktiossa kirjainta siirret
 
 Tarkastin millaisia tiedostoja tehtävän hakemistossa oli.
 
-![](/home/aapo/.config/marktext/images/2026-02-16-16-27-01-lab2-dir.png)
+![Tehtavan tiedostot](lab2-dir.png)
 
 **Kuva 14.** Tehtävässä käytettävissä olevat tiedostot
 
 Hakemistossa oli kaksi ajettavaa binääritiedostoa. Katsoin ensiksi niiden tietoja file työkalulla, jonka jälkeen ajoin ne.
 
-![](/home/aapo/.config/marktext/images/2026-02-16-16-34-10-lab2-file-ran.png)
+![Tiedostojen tiedot ja ajaminen](lab2-file-ran.png)
 
 **Kuva 15.** Tiedostot olivat ELF-binäärejä ja ne kysyivät salasanaa
 
 Tiedosto passtr taisi ollakin jo aikaisemmissa kurssin tehtävissä, mutta avasin sen taas stringsillä.
 
-![](/home/aapo/.config/marktext/images/2026-02-16-16-40-11-lab2-passtr-strings.png)
+![Salasana ja lippu](lab2-passtr-strings.png)
 
 **Kuva 16.** Salasana ja lippu oli näkyvissä binääritiedostossa
 
 Ajoin tiedoston ja laitoin salasanan.
 
-![](/home/aapo/.config/marktext/images/2026-02-16-16-43-11-lab2-passtr-solved.png)
+![Lippu salasanalla](lab2-passtr-solved.png)
 
 **Kuva 17.** Salasanalla tulostui lippu ohjelmaa ajettaessa
 
 Salasana löytyi myös gdb:llä, koska tiedostossa oli debug-tietoja, kuten aikaisemmin file työkalun kanssa näkikin.
 
-![](/home/aapo/.config/marktext/images/2026-02-16-16-57-55-lab2-gdb-passtr.png)
+![Tiedosto gdb avattuna](lab2-gdb-passtr.png)
 
 **Kuva 18.** Salasana ja lippu GNU Debuggerin avulla
 
@@ -210,13 +210,13 @@ Salasana löytyi myös gdb:llä, koska tiedostossa oli debug-tietoja, kuten aika
 
 Tiedosto passtr2o olikin kinkkisempi, koska stringsillä ei saanut juuri mitään selville.
 
-![](/home/aapo/.config/marktext/images/2026-02-16-16-48-30-lab2-strings-passtr2o.png)
+![Tiedosto stringsilla](lab2-strings-passtr2o.png)
 
 **Kuva 19.** Osa passtr2o tiedoston tulosteesta strings työkalulla
 
 GNU Debuggerin kanssa ei myöskään auennut, koska passtr2o tiedostossa ei ollut debug-tietoja.
 
-![](/home/aapo/.config/marktext/images/2026-02-16-17-00-43-lab2-gdb-passtr2o-fail.png)
+![Tiedostossa ei debug tietoja](lab2-gdb-passtr2o-fail.png)
 
 **Kuva 20.** Tiedostoa ei pystynyt tarkastelemaan gdb:llä
 
@@ -232,7 +232,7 @@ Yritin etsiä tietoa netistä, miten saisin irti koodista jotain, vaikka minulla
 (gdb) info functions
 ```
 
-![](/home/aapo/.config/marktext/images/2026-02-16-19-05-46-lab2-info-functions.png)
+![Funktiot](lab2-info-functions.png)
 
 **Kuva 21.** Ohjelman funktiot
 
@@ -242,23 +242,23 @@ Löysin toisesta lähteestä komennon, jolla sai funktion assembly muotoon.
 
 Laitoin assembly muotoon main funktion.
 
-![](/home/aapo/.config/marktext/images/2026-02-16-19-12-54-lab2-disassemble-main.png)
+![Assembly koodi](lab2-disassemble-main.png)
 
 **Kuva 22.** Funktion main assembly koodi
 
 Muutin myös check_password funktion assembly koodiksi, koska se vaikutti nimensä puolesta oleelliselta.
 
-![](/home/aapo/.config/marktext/images/2026-02-16-19-15-21-lab2-disassemble-check.png)
+![Assembly koodi](lab2-disassemble-check.png)
 
 **Kuva 23.** Funktion check_password assembly koodi
 
 Yritin asettaa erilaisiin funktioihin breakpointteja, mutta niistä ei tapahtunut mitään erikoista.
 
-![](/home/aapo/.config/marktext/images/2026-02-16-19-20-05-lab2-break-main.png)
+![Breakpoint main](lab2-break-main.png)
 
 **Kuva 24.** Funktio main asetettu breakpointiksi
 
-![](/home/aapo/.config/marktext/images/2026-02-16-19-21-31-lab2-break-check.png)
+![Breakpoint check password](lab2-break-check.png)
 
 **Kuva 25.** Funktio check_password asetettuna breakpointiksi
 
@@ -268,19 +268,19 @@ Yritin asettaa erilaisiin funktioihin breakpointteja, mutta niistä ei tapahtunu
 
 Laitoin breakpointiksi funktion strlen, jolloin sain pysäytettyä ohjelman salasanan syöttämisen jälkeen. Tarkastelin rekistereitä, kun ohjelma oli ajossa, mutta odotti käskyä jatkaa salasanan syöttämisen jälkeen.
 
-![](/home/aapo/.config/marktext/images/2026-02-16-19-30-10-lab2-info-registers.png)
+![Rekisterit](lab2-info-registers.png)
 
 **Kuva 26.** Rekisterit ohjelman ollessa vielä käynnissä
 
 Kokeilin aiemmin viittaamani CTF Handbookin ohjeiden mukaan saada rekistereistä tietoa ulos. Ajattelin salasanan mahdollisesti olevan jossain muistissa.
 
-![](/home/aapo/.config/marktext/images/2026-02-16-19-31-02-lab2-registers-values-1.png)
+![Rekisterin tarkastelua](lab2-registers-values-1.png)
 
 **Kuva 27.** Ensimmäinen osa rekisterien tarkastelussa
 
 <br>
 
-![](/home/aapo/.config/marktext/images/2026-02-16-19-32-16-lab2-registers-values-2.png)
+![Rekisterin tarkastelua](lab2-registers-values-2.png)
 
 **Kuva 28.** Toinen osa rekisterien tarkastelussa
 
@@ -294,7 +294,7 @@ Kokeilin aiemmin viittaamani CTF Handbookin ohjeiden mukaan saada rekistereistä
 
 Komento näytti siis merkkijonona rekisterin sisällön. Kokeilin salasanoja "anLTj4u8" ja "iRUUUU", koska ne esiintyivät rekistereissä ja ne vaikuttivat mahdollisesti salasanan kaltaisilta. Kumpikaan ei ollut kuitenkaan oikea salasana.
 
-![](/home/aapo/.config/marktext/images/2026-02-16-19-47-23-lab2-passtr2o-final-fail.png)
+![Vaarat salasanat](lab2-passtr2o-final-fail.png)
 
 **Kuva 29.** Molemmat uudet sanat olivat vääriä salasanoja
 
@@ -308,19 +308,19 @@ Tässä vaiheessa jouduin toteamaan, että en keksinyt uusia lähestymistapoja e
 
 Aloitin katsomalla millaisia tiedostoja hakemistossa oli.
 
-![](/home/aapo/.config/marktext/images/2026-02-16-19-54-54-lab3-ls.png)
+![Hakemiston tiedostot](lab3-ls.png)
 
 **Kuva 30.** Lab3 tehtävät
 
 Oletin tehtävässä olevan tarkoituksena saada salasana binääristä debuggerilla. Avasin kuitenkin samalla tavalla gdb-ohjelmalla tiedoston crackme03.64, joka ei sisältänyt debug-tietoja. Funktiossa main huomasin toisen funktion nimeltä check_pw.
 
-![](/home/aapo/.config/marktext/images/2026-02-16-20-50-47-lab3-disassemble-main.png)
+![Assembly koodia](lab3-disassemble-main.png)
 
 **Kuva 31.** Funktio main assembly koodina
 
 Muutin assemblyksi funktion check_pw.
 
-![](/home/aapo/.config/marktext/images/2026-02-16-20-53-54-lab3-disassemble-check-pw.png)
+![Assembly koodia](lab3-disassemble-check-pw.png)
 
 **Kuva 32.** Funktio check_pw assembly koodina
 
@@ -328,7 +328,7 @@ En kyllä osannut tätäkään lähestyä enää millään uudella tavalla. Läh
 
 Sama homma jatkui crackme04.64 tiedostossa.
 
-![](/home/aapo/.config/marktext/images/2026-02-16-21-29-50-lab3-disassemble-main-4.png)
+![Main funktio debuggerilla](lab3-disassemble-main-4.png)
 
 **Kuva 33.** Tiedoston crackme04.64 main funktio gdb:llä
 
