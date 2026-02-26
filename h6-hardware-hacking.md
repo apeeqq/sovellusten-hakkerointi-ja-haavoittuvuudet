@@ -184,7 +184,7 @@ Menin tarkastamaan löytyikö salasana, mutta niitä ei löytynyt.
 
 ![Ei osumia](passwd-crack-fail.png)
 
-**Kuva10.** Salasanoja ei löytynyt tiedostosta john.pot
+**Kuva 10.** Salasanoja ei löytynyt tiedostosta john.pot
 
 Yritin vielä ilman sanalistaa murtaa salasanaa johnin oletus asetuksilla, mutta lopetin n. 15min jälkeen, koska osumia ei ollut löytynyt.
 
