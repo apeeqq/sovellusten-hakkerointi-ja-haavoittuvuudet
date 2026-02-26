@@ -60,7 +60,7 @@ $ bin/tp-link-decrypt Tapo_C200v5_en_1.2.3.bin #Purkaa salauksen hyödyntäen tp
 
 Tuloksena tuli tiedosto "Tapo_C200v5_en_1.2.3.bin.dec".
 
-![](/home/aapo/.config/marktext/images/2026-02-25-11-52-15-decrypted-file.png)
+![Kasiteltava tiedosto](decrypted-file.png)
 
 **Kuva 1.** Käsiteltävä dekryptattu tiedosto alleviivattu punaisella
 
@@ -82,13 +82,13 @@ $ binwalk -e Tapo_C200v5_en_1.2.3.bin.dec #Analysoi ja eristää kaikki tunnetut
 
 Listasin hakemiston _Tapo_C200v5_en_1.2.3.bin.dec.extracted, josta löytyi squashfs-root hakemisto.
 
-![](/home/aapo/.config/marktext/images/2026-02-26-08-52-07-squashfs-root-dir.png)
+![Hakemisto eristettyna](squashfs-root-dir.png)
 
 **Kuva 2.** Hakemisto eristettynä
 
 Lisäksi samasta hakemistosta _Tapo_C200v5_en_1.2.3.bin.dec.extracted löytyi toinenkin root-hakemistoon viittaava tekijä, jonka ajattelin sisältävän mahdollisesti root-osion muistiosoitteen.
 
-![](/home/aapo/.config/marktext/images/2026-02-26-08-50-41-squashfs-memory-address.png)
+![Mahdollinen muistiosoite](squashfs-memory-address.png)
 
 **Kuva 3.** Mahdollinen muistiosoite 3E0200
 
@@ -98,7 +98,7 @@ Katsoin lisäksi ilman eristämistä binwalkilla image-tiedostoa.
 $ binwalk Tapo_C200v5_en_1.2.3.bin.dec
 ```
 
-![](/home/aapo/.config/marktext/images/2026-02-25-17-29-37-binwalk-tapov5.png)
+![Osa vastauksesta](binwalk-tapov5.png)
 
 **Kuva 4.** Osa tulosteesta yllä olevaan komentoon
 
@@ -126,7 +126,7 @@ Sain pähkäiltyä ChatGPT:n avulla bs arvoksi 4096 ja skip arvoksi 992, koska o
 
 (ChatGPT. Kielimalli: GPT-5 Mini. Syöte: what is this 4063744 / 4096 = 992)
 
-![](/home/aapo/.config/marktext/images/2026-02-25-17-40-32-dd-tapov5.png)
+![Eristys ja listaus](dd-tapov5.png)
 
 **Kuva 5.** Root-osion eristäminen ja hakemisto listattuna
 
@@ -136,7 +136,7 @@ Katsoin eristettyä tiedostoa less-työkalulla, mutta mitään erikoista sieltä
 $ less fs.squashfs
 ```
 
-![](/home/aapo/.config/marktext/images/2026-02-26-09-05-31-less-squashfs.png)
+![Eristetty tiedosto](less-squashfs.png)
 
 **Kuva 6.** Osa tiedostosta fs.squashfs
 
@@ -152,13 +152,13 @@ $ grep -Rni --text "root" . | less #R valinta tarkastaa kaikki tiedostot rekursi
 
 Tuloksena sain johtolangan tulosteesta.
 
-![](/home/aapo/.config/marktext/images/2026-02-25-18-06-36-root-possible-passwd.png)
+![Mahdollinen salasanan tiiviste](root-possible-passwd.png)
 
 **Kuva 7.** Root käyttäjän mahdollinen salasana tiivisteenä
 
 Mahdollinen salasanan tiiviste löytyi, koska syntaksi vastasi linuxin salasanatiedostossa olevaa syntaksia. Löysin tiivisteen vielä toisestakin kohdasta samasta tulosteesta.
 
-![](/home/aapo/.config/marktext/images/2026-02-25-18-10-43-root-possible-passwd2.png)
+![Sama salasanan tiiviste](root-possible-passwd2.png)
 
 **Kuva 8.** Toisessa paikassa tulostetta sama salasanan tiiviste
 
@@ -176,19 +176,19 @@ Oletin kyseessä olevan tiiviste, koska \$1$ tarkoittaa MD5 tiivisteen käyttö�
 
 Yritin John the ripper ohjelman avulla suorittaa salasanaa vasten brute-force metodilla murron. Käytin sanalistana rockyou.txt tiedostoa, joka löytyi valmiina Kali distrosta. John yrittää verrata murrettavaa salasanaa toisinsanoen rockyou.txt tiedostosta löytyviin merkkijonoihin.
 
-![](/home/aapo/.config/marktext/images/2026-02-25-18-23-18-john.png)
+![Johnin ajaminen](john.png)
 
 **Kuva 9.** John the ripperin käyttö
 
 Menin tarkastamaan löytyikö salasana, mutta niitä ei löytynyt.
 
-![](/home/aapo/.config/marktext/images/2026-02-25-18-25-30-passwd-crack-fail.png)
+![Ei osumia](passwd-crack-fail.png)
 
 **Kuva10.** Salasanoja ei löytynyt tiedostosta john.pot
 
 Yritin vielä ilman sanalistaa murtaa salasanaa johnin oletus asetuksilla, mutta lopetin n. 15min jälkeen, koska osumia ei ollut löytynyt.
 
-![](/home/aapo/.config/marktext/images/2026-02-26-09-18-34-john-without-wlist.png)
+![Uusi ajaminen johnilla](john-without-wlist.png)
 
 **Kuva 11.** Brute-force yritys johnin oletus asetuksilla
 
