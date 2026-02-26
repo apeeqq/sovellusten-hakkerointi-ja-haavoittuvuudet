@@ -162,7 +162,7 @@ Mahdollinen salasanan tiiviste löytyi, koska syntaksi vastasi linuxin salasanat
 
 **Kuva 8.** Toisessa paikassa tulostetta sama salasanan tiiviste
 
-Oletin kyseessä olevan tiiviste, koska \$1$ tarkoittaa MD5 tiivisteen käyttöä salasanassa. Lisäksi salasana oli suolattu joka oli tapauksessa \$FR2o8Kmf$.
+Oletin kyseessä olevan tiiviste, koska numero 1 tarkoittaa MD5 tiivisteen käyttöä salasanassa. Lisäksi salasana oli suolattu joka oli tapauksessa FR2o8Kmf. Syntaksissa ts. $-merkki erottaa vasemmalta oikealle luettaessa tiivisteen tyypin, suolan ja varsinaisen salasanan.
 
 (Panovski 2026. URL: [Understanding the /etc/shadow File in Linux | Linuxize](https://linuxize.com/post/etc-shadow-file/))
 
@@ -170,7 +170,7 @@ Oletin kyseessä olevan tiiviste, koska \$1$ tarkoittaa MD5 tiivisteen käyttö�
 
 ## 5. Search Available applications
 
-## &
+### &
 
 ## 6. Analyse and try to open root password
 
