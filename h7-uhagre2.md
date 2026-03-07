@@ -148,7 +148,7 @@ Koodissa s-muuttujaan asetetaan arvo "1c0111001f010100061a024b53535009181c", jok
 
 Lopulta print-funktiossa tehdään bittikohtainen xor operaatio (bitwise xor operation) kokonaisluvuille muuttujissa s ja xord_ag. Bittikohtainen xor operaatio suoritetaan "caret" merkillä.
 
-(VasuDeos. GeeksforGeeks. URL: [VasuDeoS - Indian Institute of Technology Kanpur (IIT Kanpur) | GeeksforGeeks Profile](https://www.geeksforgeeks.org/profile/vasudev4))
+(VasuDeos. GeeksforGeeks. URL: [XOR of Two Variables in Python](https://www.geeksforgeeks.org/python/get-the-logical-xor-of-two-variables-in-python/))
 
 Samalla käytetään pythonin hex-funktiota, jolla muutetaan xor operaatiosta tuleva luku heksadesimaaliksi. Lopulta merkintä [2:] poistaa tulosteesta  "0x", joka tulee automaattisesti muutettaessa kokonaislukua heksadesimaaliksi.
 
