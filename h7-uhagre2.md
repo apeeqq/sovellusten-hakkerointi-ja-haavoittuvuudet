@@ -92,7 +92,7 @@ Selvitin raakatavujen, hexojen, binäärien ja base64 suhdetta toisiinsa syötte
 
 Vastauksessaan tekoäly sanoi raakatavujen olevan alinta ja "oikeaa" dataa. Tämän jälkeen tulivat binääri, jonka kantaluku on 2. Heksojen kantaluku on 16 ja base64 kantaluku on 64. Tein vastauksesta piirustuksen ja liitin sen tähän. Ehkä voi jotain toistakin joskus auttaa hahmottamisessa.
 
-![](/home/aapo/.config/marktext/images/2026-03-05-19-37-27-data-formats-explained.drawio.png)
+![Formaatit havainnollistettu](data-formats-explained.drawio.png)
 
 **Kuva 1.** Sama arvo esitetty neljässä eri muodossa
 
@@ -106,7 +106,7 @@ Löysin lisää ohjeita xxd-ohjelmasta.
 
 Sain ainakin suoraan heksoista base64 merkkijonon, joka oli tehtävänannossakin.
 
-![](/home/aapo/.config/marktext/images/2026-03-05-19-38-30-xxd-hex-to-base64.png)
+![Heksat base64 muodossa](xxd-hex-to-base64.png)
 
 **Kuva 2.** Heksat käännettynä base64-muotoon
 
@@ -124,13 +124,13 @@ En löytänyt oikein tietoa, miten saisin käännettyä raakatavut base64-muotoo
 
 Ajattelin ensimmäiseksi lähestyä tehtävää luomalla muuttujat alkuperäiselle merkkijonolle ja merkkijonolle jota vastaan suoritetaan xor operaatio. Tämän jälkeen print-funktiolla tulostaisin ne ja samalla suorittaisin xor operaation.
 
-![](/home/aapo/.config/marktext/images/2026-03-06-10-01-24-2-first-code.png)
+![Ensimmainen koodi tehtavaan](2-first-code.png)
 
 **Kuva 3.** Luotu koodi
 
 Ajoin tiedoston, mutta sain virheilmoituksen.
 
-![](/home/aapo/.config/marktext/images/2026-03-06-10-03-13-2-ran-error.png)
+![Virheilmoitus](2-ran-error.png)
 
 **Kuva 4.** Virheilmoitus koodia ajettaessa
 
@@ -138,7 +138,7 @@ Huomasin tässä vaiheessa, että minullahan oli aivan väärässä muodossa muu
 
 Kokeilujen ja tiedon etsimisen jälkeen sain oikean vastauksen.
 
-![](/home/aapo/.config/marktext/images/2026-03-06-11-00-22-2-first-correct.png)
+![Ensimmainen versio](2-first-correct.png)
 
 **Kuva 5.** Ensimmäinen versio oikeanlaisesta koodista
 
@@ -160,7 +160,7 @@ Samalla käytetään pythonin hex-funktiota, jolla muutetaan xor operaatiosta tu
 
 Tehtävänannossa käskettiin tehdä funktio, joka ottaa kaksi yhtä suurta puskuria ja tekee niistä XOR yhdistelmän. Tein vielä siis lisäykset koodiin, joilla sain käyttäjältä kaksi syötettä, vertailin niiden pituutta keskenään ja erillisen funktion vertailulle ja xor operaatiolle. Syötteiden ottamisen ja tuloksen tulostamisen tein main-funktioon.
 
-![](/home/aapo/.config/marktext/images/2026-03-06-12-05-31-2-final-code.png)
+![Toimiva koodi](2-final-code.png)
 
 **Kuva 6.** Lopullinen koodi
 
@@ -175,13 +175,13 @@ asettaa muuttujan oikein pythonin tulkatessaan tiedostoa. Minulle opetettiin pyt
 
 Ajoin tiedoston toteakseni sen toimivan.
 
-![](/home/aapo/.config/marktext/images/2026-03-06-12-21-27-2-correct-output.png)
+![Ohjelma ajettuna](2-correct-output.png)
 
 **Kuva 7.** Ohjelma toimi kuten pitikin
 
 Tarkistin vielä, että tulosteena saatu heksadesimaali vastasi cryptopals sivuston vastauksen heksadesimaalia. Käytin tarkastukseen luomaani bash-koodia tiivisteiden tarkastamiseen. Koodi toimii minkä vain kahden merkkijonon tarkasteluun.
 
-![](/home/aapo/.config/marktext/images/2026-03-06-12-34-14-2-bash-verified.png)
+![Yhtenevaisyyden tarkastus](2-bash-verified.png)
 
 **Kuva 8.** Heksadesimaalien yhteneväisyyden tarkastus
 
@@ -195,13 +195,13 @@ Tulosteena tuli "OK", joka merkitsi heksojen olevan samanlaiset, muutoin tuloste
 
 Lähdin ensiksi tekemään koodia joka lajittelisi frekvenssin mukaan merkit.
 
-![](/home/aapo/.config/marktext/images/2026-03-06-21-00-51-3-code.png)
+![Ohjelma merkkien laskemiseen](3-code.png)
 
 **Kuva 9.** Python ohjelma laskemaan merkkien esiintyvyyttä
 
 Kuvassa on kommentteina selitetty koodin toiminta.
 
-![](/home/aapo/.config/marktext/images/2026-03-07-12-37-57-3-rank-code-output.png)
+![Ohjelma ajettuna](3-rank-code-output.png)
 
 **Kuva 10.** Ohjelman ajaminen
 
@@ -213,7 +213,7 @@ Etsin tietoa netistä n. 4-5h ja yritin hahmottaa, miten muuntaisin heksadesimaa
 
 Yritin erilaisia koodeja paljon, mutta pääsin lähimmäksi alla olevalla koodilla.
 
-![](/home/aapo/.config/marktext/images/2026-03-07-16-57-38-3-closest-code.png)
+![Paras koodini](3-closest-code.png)
 
 **Kuva 11.** Paras tuottamani koodi tehtävään
 
@@ -225,7 +225,7 @@ Ajoin koodin komennolla
 $ python3 test2-single-byte-xor.py | less
 ```
 
-![](/home/aapo/.config/marktext/images/2026-03-07-17-00-55-3-closest-code-output.png)
+![Ohjelma ajettuna](3-closest-code-output.png)
 
 **Kuva 12.** Tuloste ohjelman ajamisen jälkeen
 
@@ -233,7 +233,7 @@ Kuten kuvasta ilmenee, korkeimman sijoituksen sai kokonaisluvulla 16 lause "cook
 
 Ongelma koodissani oli todennäköisesti for-silmukassa, joka kerää text-muuttujaan merkkejä, koska tulosteessani loppuosa puuttuu oikeasta lauseesta.
 
-![](/home/aapo/.config/marktext/images/2026-03-07-17-08-31-3-for-pos-problem.png)
+![Ongelma silmukka](3-for-pos-problem.png)
 
 **Kuva 13.** Silmukka jossa uskoin ongelman olevan
 
@@ -247,13 +247,13 @@ Minulla oli kulunut jo niin kauan aikaa tehtävään ja aika alkoi loppumaan, jo
 
 En osannut muuta kuin muuttaa aiempaa koodia hieman erilaiseksi, jonka jälkeen yritin syöttää käyttäjän syötteenä tiedostossa olevat heksat. Syötteenä ei kuitenkaan voinut antaa tehtävän heksoja, koska kone meni suorastaan sekaisin. Tehtävän tiedoston heksoja taisi olla liian paljon.
 
-![](/home/aapo/.config/marktext/images/2026-03-07-17-20-27-4-code.png)
+![Muokattu koodi](4-code.png)
 
 **Kuva 14.** Uusi koodi
 
 Muutin koodin alkuun vain syötteen kautta tapahtuvan heksojen syöttämisen aiemman kovakoodatun heksan sijaan.
 
-![](/home/aapo/.config/marktext/images/2026-03-07-17-24-16-4-code-ran.png)
+![Ohjelma ajettuna](4-code-ran.png)
 
 **Kuva 15.** Ohjelma kysyi käyttäjän syötettä ajettaessa
 
